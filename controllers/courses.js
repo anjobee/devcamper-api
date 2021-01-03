@@ -87,6 +87,7 @@ exports.updateCourse = asyncHandler(async (req, res, next) => {
         data: course
     });
 });
+
 //@desc     Delete course
 //@route    DELETE /api/v1/courses/:id
 //@access   Private
