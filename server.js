@@ -46,8 +46,19 @@ app.use(fileupload());
 //Sanitize Data
 app.use(mongoSanitize());
 
-//Set security headers --- Not working check on POSTMAN 1/6/2021
-app.use(helmet());
+//Set security headers
+// app.use(helmet());
+app.use(
+   helmet.contentSecurityPolicy({
+     directives: {
+       defaultSrc: ["'self'"],
+       scriptSrc: ["'self'", "'sha256-ZomnyosL2bmZ79LmErHEhL+1fVaBj9NngvpOK/l4qio='"],
+       objectSrc: ["'none'"],
+       styleSrc: ["'self'", "'sha256-AqXh99DOx3mQQD++lNaT2Mo4sUlV+iN1ydvHVQhm4+g='"],
+       upgradeInsecureRequests: [],
+     },
+   })
+ );
 
 //Prevent XSS attacks
 app.use(xss());
